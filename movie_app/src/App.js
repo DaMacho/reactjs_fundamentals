@@ -15,9 +15,9 @@ class App extends Component {
   }
 
   _renderMovies = () => {
-    const movies = this.state.movies.map((movie, index) => {
+    const movies = this.state.movies.map(movie => {
       console.log(movie)
-      return <Movie title={movie.title} poster={movie.medium_cover_image} key={index} />
+      return <Movie title={movie.title} poster={movie.medium_cover_image} key={movie.id} />
     })
     return movies
   }
@@ -25,7 +25,7 @@ class App extends Component {
   _getMovies = async () => {
     const movies = await this._callApi()  // line will wait until the function finish work and return value
     this.setState({
-      movies
+      movies : movies
     })
   }
 
