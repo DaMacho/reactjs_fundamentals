@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import LineEllipsis from 'react-lines-ellipsis';
 import './Movie.css';
 
 // The smart component have 'state', but dum component doesn't have 'state'
@@ -9,17 +10,23 @@ import './Movie.css';
 function Movie({title, poster, genres, synopsis}){
   return(
     <div className="Movie">
-      <div className="Movie__Columns">
+      <div className="Movie__Column">
         <MoviePoster poster={poster} alt={title} />
       </div>
-      <div className="Movie__Columns">
+      <div className="Movie__Column">
         <h1>{title}</h1>
         <div className="Movie__Genres">
           {genres.map((genre, index) => <MovieGenre genre={genre} key={index} />)}
         </div>
-        <p className="Movie__Synopsis">
-          {synopsis}
-        </p>
+        <div className="Movie__Synopsis">
+        <LineEllipsis
+          text = {synopsis}
+          maxLine = '4'
+          ellipsis=' ...'
+          trimRight
+          based0n='letters'
+          />
+        </div>
       </div>
       
     </div>
@@ -87,7 +94,7 @@ MoviePoster.propTypes = {
 }
 
 MovieGenre.propTypes = {
-  genres: PropTypes.string.isRequired
+  genre: PropTypes.string.isRequired
 }
 
 export default Movie;
